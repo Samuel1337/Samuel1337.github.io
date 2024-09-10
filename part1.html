@@ -4,32 +4,18 @@
     <meta charset="UTF-8">
     <meta name="description" content="Homework assignments JavaScript CSM">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Course Assignments</title>
+    <title>Homework 2 - Part 1</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #b3dafc;
             color: #333;
+            text-align: center;
         }
 
         h1 {
             color: #2c3e50;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        ul {
-            display: flex;
-            flex-direction: column;
-            list-style-type: none;
-            padding: 0;
-            justify-content: center;
-            align-items: center;
-        }
-
-        li {
-            margin: 10px 0;
-            padding: 10px;
+            margin-top: 50px;
         }
 
         a {
@@ -39,24 +25,34 @@
             color: white;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
         }
 
         a:hover {
             background-color: #3498db;
         }
+
+        #output {
+            font-size: 24px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>CIS 114 Assignments</h1>
-    <ul>
-        <li><a href="hw2.html">Homework 2</a></li>
-        <li>Homework 3 (coming soon)</li>
-        <li>Homework 4 (coming soon)</li>
-        <li>Homework 5 (coming soon)</li>
-        <li>Homework 6 (coming soon)</li>
-        <li>Homework 7 (coming soon)</li>
-        <li>Homework 8 (coming soon)</li>
-    </ul>
+
+    <h1>Homework 2 - Part 1: Formatted Text</h1>
+
+    <div id="output"></div>
+
+    <a href="hw2.html">Back to Homework 2</a>
+
+    <script>
+        document.getElementById("output").innerHTML = 
+            "<strong style='font-family: Times New Roman; color: red;'>xy</strong> " +
+            "<span style='font-family: Arial; color: blue;'>12</span> " +
+            "<em style='font-family: Impact; color: green;'>89</em>";
+    </script>
 
 </body>
 </html>
