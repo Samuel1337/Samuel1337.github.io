@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3dafc;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="number"], input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3498db;
+        }
+
+        textarea {
+            margin-top: 10px;
+            width: calc(100%-10px);
+            height: 50px;
+            padding: 10px;
+            resize: none;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #3498db;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #3498db;
+        }
+
+        .back-div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multiplication Game</h1>
+    <section>
+        <form id="gameForm">
+            <label for="question">Question:</label>
+            <input type="text" id="question" readonly>
+            
+            <label for="answer">Your Answer:</label>
+            <input type="number" id="answer" min="0">
+            
+            <input type="submit" value="Submit Answer">
+            <textarea id="feedback" readonly></textarea>
+        </form>
+        <div style="height: 5rem; width: 100%;">
+            <div id="playAgain" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <label>Play Again?</label>
+                </div>
+                <div style="width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                    <button class="btn" id="yesBtn">Yes</button>
+                    <button class="btn" id="noBtn">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="back-div">
+            <a href="hw3.html">Back to Homework 3</a>
+        </div>
+    </section>
+    <script>
+        let num1, num2, correctAnswer;
+
+        function generateQuestion() {
+            num1 = Math.floor(Math.random() * 10);
+            num2 = Math.floor(Math.random() * 10);
+            correctAnswer = num1 * num2;
+            document.getElementById('question').value = `How much is ${num1} times ${num2}?`;
+            document.getElementById('answer').value = '';
+            document.getElementById('feedback').value = '';
+            document.getElementById('playAgain').style.display = 'none';
+        }
+
+        document.getElementById('gameForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let userAnswer = parseInt(document.getElementById('answer').value);
+            if (userAnswer === correctAnswer) {
+                document.getElementById('feedback').value = 'Very good!';
+                document.getElementById('playAgain').style.display = 'block';
+            } else if (userAnswer !== '') {
+                document.getElementById('feedback').value = 'No. Please try again.';
+            }
+        });
+
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            generateQuestion();
+        });
+
+        document.getElementById('noBtn').addEventListener('click', function() {
+            document.getElementById('feedback').value = 'Thanks for playing, see you next time!';
+            document.getElementById('playAgain').style.display = 'none';
+        });
+
+        window.onload = generateQuestion;
+    </script>
+</body>
+</html>
