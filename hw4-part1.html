@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Looping Calculations">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1 - Looping Calculations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3dafc;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            background-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>Part 1 - Looping Calculations</h1>
+    <p id="product1"></p>
+    <p id="sum1"></p>
+    <p id="product2"></p>
+    <p id="sum2"></p>
+
+    <script>
+        let product1 = 1;
+        let sum1 = 0;
+        for (let i = 5; i <= 25; i += 4) {
+            product1 *= i;
+            sum1 += i;
+        }
+        document.getElementById('product1').textContent = `The result of 5 * 9 * 13 * 17 * 21 * 25 is ${product1.toLocaleString()}.`;
+        document.getElementById('sum1').textContent = `The result of 5 + 9 + 13 + 17 + 21 + 25 is ${sum1.toLocaleString()}.`;
+
+        let product2 = 1;
+        let sum2 = 0;
+        let j = 3;
+        while (j <= 18) {
+            product2 *= j;
+            sum2 += j;
+            j += 3;
+        }
+        document.getElementById('product2').textContent = `The result of 3 * 6 * 9 * 12 * 15 * 18 is ${product2.toLocaleString()}.`;
+        document.getElementById('sum2').textContent = `The result of 3 + 6 + 9 + 12 + 15 + 18 is ${sum2.toLocaleString()}.`;
+    </script>
+
+    <p><a href="hw4.html">Back to Homework 4</a></p>
+</body>
+</html>

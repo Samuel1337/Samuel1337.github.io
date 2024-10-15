@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Hollow Square with Asterisks">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Credit - Hollow Square</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3dafc;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        #result {
+            margin-top: 20px;
+            white-space: pre;
+        }
+
+        .result-container {
+            height: 200px;
+        }
+
+        .aligned-text {
+            font-family: "Courier New", Courier, monospace;
+            white-space: pre;
+            text-align: left;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            background-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <h1>Extra Credit - Hollow Square</h1>
+
+    <form id="squareForm">
+        <label for="size">Enter a number (2-10):</label>
+        <input type="number" id="size" name="size" min="2" max="10" required onchange="generateSquare()">
+        <button type="button" onclick="generateSquare()">Generate Square</button>
+        <button type="reset">Clear</button>
+    </form>
+    <div class="result-container">
+        <div id="result" class="aligned-text"></div>
+    </div>
+
+    <script>
+        function generateSquare() {
+            const size = parseInt(document.getElementById('size').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(size) || size < 2 || size > 10) {
+                resultDiv.textContent = "Please enter a valid number between 2 and 10.";
+                return;
+            }
+
+            let square = '';
+            for (let i = 0; i < size; i++) {
+                for (let j = 0; j < size; j++) {
+                    if (i === 0 || i === size -1 || j === 0 || j === size -1) {
+                        square += '* ';
+                    } else {
+                        square += "  ";
+                    }
+                }
+                square += '\n';
+            }
+            resultDiv.textContent = square;
+        }
+    </script>
+
+    <p><a href="hw4.html">Back to Homework 4</a></p>
+</body>
+</html>
