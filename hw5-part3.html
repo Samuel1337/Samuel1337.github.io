@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 5 Part 3 - State Information">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 5 Part 3 - State Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3dafc;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        label, button {
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: fit-content;
+        }
+
+        a:hover {
+            background-color: #3498db;
+        }
+
+        #outputArea {
+            margin: 20px;
+            padding: 10px;
+            width: 80%;
+            max-width: 500px;
+            height: 100px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Part 3 - State Information</h1>
+    <div class="container">
+        <form id="stateForm">
+            <label>Enter state name or abbreviation:
+                <input type="text" id="stateInput">
+            </label>
+            <button type="button" onclick="getStateInfo()">Get State Info</button>
+            <button type="reset">Clear</button>
+        </form>
+        
+        <div id="outputArea"></div>
+        <a href="hw5.html">Back to Homework 5 Main Page</a>
+    </div>
+
+    <script>
+        const states = {
+            AL: ["Alabama", "Montgomery", "4,903,185"],
+            AK: ["Alaska", "Juneau", "731,545"],
+            AZ: ["Arizona", "Phoenix", "7,278,717"],
+            AR: ["Arkansas", "Little Rock", "3,017,825"],
+            CA: ["California", "Sacramento", "39,512,223"],
+            CO: ["Colorado", "Denver", "5,758,736"]
+        };
+
+        function getStateInfo() {
+            const input = document.getElementById("stateInput").value.trim().toUpperCase();
+            const output = document.getElementById("outputArea");
+            output.textContent = "";
+
+            for (const [abbr, [name, capital, population]] of Object.entries(states)) {
+                if (input === abbr || input === name.toUpperCase()) {
+                    output.innerHTML = `
+                        <strong>Thanks for your inquiry, here is the information you requested:</strong><br>
+                        State Abbr = ${abbr}<br>
+                        State Name = ${name}<br>
+                        Capital = ${capital}<br>
+                        Population = ${population}
+                    `;
+                    return;
+                }
+            }
+            output.textContent = `Sorry, we do not have information about this state! We only have information about: ${Object.keys(states).map(abbr => states[abbr][0]).join(", ")}.`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 5 Part 1 - User Information Form">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 5 - Part 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3dafc;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+        }
+
+        fieldset {
+            border: 1px solid #2980b9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        .output-area {
+            margin: 15px;
+            font-weight: bold;
+            color: red;
+            text-align: center;
+            height: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: fit-content;
+        }
+
+        a:hover {
+            background-color: #3498db;
+        }
+
+
+        .multiple-choice {
+            display: flex;
+            flex-direction: row;
+            justify-content:left;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Part 1 - User Information Form</h1>
+
+        <form id="userForm">
+            <label>
+                Full Name:
+                <input type="text" id="fullName" required>
+            </label>
+
+            <fieldset>
+                <legend>Age Group</legend>
+                <label class="multiple-choice"><input type="radio" name="ageGroup" value="under21">Less than 21</label>
+                <label class="multiple-choice"><input type="radio" name="ageGroup" value="21to50">Between 21 and 50</label>
+                <label class="multiple-choice"><input type="radio" name="ageGroup" value="over50">Older than 50</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Browsers Used</legend>
+                <label class="multiple-choice"><input type="checkbox" name="browsers" value="Firefox"> Firefox</label>
+                <label class="multiple-choice"><input type="checkbox" name="browsers" value="Edge"> Edge</label>
+                <label class="multiple-choice"><input type="checkbox" name="browsers" value="Chrome"> Chrome</label>
+                <label class="multiple-choice"><input type="checkbox" name="browsers" value="Safari"> Safari</label>
+            </fieldset>
+
+            <label>
+                Favorite Movie Genre:
+                <select id="movieGenre">
+                    <option value="">Select a genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Documentary">Documentary</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                </select>
+            </label>
+
+            <button type="button" onclick="validateForm(false)">Submit</button>
+            <button type="reset" onclick="validateForm(true)">Clear</button>
+        </form>
+
+        <div id="outputArea" class="output-area"></div>
+        <a href="hw5.html">Back to Homework 5 Main Page</a>
+    </div>
+
+    <script>
+        function validateForm(clear) {
+            const fullName = document.getElementById("fullName").value.trim();
+            const ageGroup = document.querySelector('input[name="ageGroup"]:checked');
+            const browsers = document.querySelectorAll('input[name="browsers"]:checked');
+            const movieGenre = document.getElementById("movieGenre").value;
+
+            const output = document.getElementById("outputArea");
+            output.textContent = "";
+            if (clear) {
+                output.textContent = "";
+                return;
+            }
+            if (!fullName) {
+                output.textContent = "Please enter your full name.";
+                output.style.color = "red";
+                return;
+            }
+            if (!ageGroup) {
+                output.textContent = "Please select an age group.";
+                output.style.color = "red";
+                return;
+            }
+            if (browsers.length === 0) {
+                output.textContent = "Please select at least one browser.";
+                output.style.color = "red";
+                return;
+            }
+            if (!movieGenre) {
+                output.textContent = "Please select your favorite movie genre.";
+                output.style.color = "red";
+                return;
+            }
+
+            output.textContent = "Thanks, your data was submitted!";
+            output.style.color = "green";
+        }
+    </script>
+</body>
+</html>
