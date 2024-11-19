@@ -139,36 +139,32 @@
             const ageGroup = document.querySelector('input[name="ageGroup"]:checked');
             const browsers = document.querySelectorAll('input[name="browsers"]:checked');
             const movieGenre = document.getElementById("movieGenre").value;
-
             const output = document.getElementById("outputArea");
+
+            console.log(ageGroup);
+            console.log(browsers);
+
             output.textContent = "";
+            output.style.color = "red";
+            
             if (clear) {
                 output.textContent = "";
                 return;
             }
+
             if (!fullName) {
                 output.textContent = "Please enter your full name.";
-                output.style.color = "red";
-                return;
-            }
-            if (!ageGroup) {
+            } else if (!ageGroup) {
                 output.textContent = "Please select an age group.";
-                output.style.color = "red";
-                return;
-            }
-            if (browsers.length === 0) {
+            } else if (browsers.length === 0) {
                 output.textContent = "Please select at least one browser.";
-                output.style.color = "red";
-                return;
-            }
-            if (!movieGenre) {
+            } else if (!movieGenre) {
                 output.textContent = "Please select your favorite movie genre.";
-                output.style.color = "red";
-                return;
+            } else {
+                output.textContent = "Thanks, your data was submitted!";
+                output.style.color = "green";
             }
 
-            output.textContent = "Thanks, your data was submitted!";
-            output.style.color = "green";
         }
     </script>
 </body>

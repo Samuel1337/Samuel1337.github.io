@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 6 Part 1 - Number Calculations">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 6 - Part 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3dafc;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3498db;
+        }
+
+        .output-area {
+            margin: 15px;
+            font-weight: bold;
+            text-align: center;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: fit-content;
+        }
+
+        a:hover {
+            background-color: #3498db;
+        }
+
+        #numberInput {
+            transition: background-color 0.3s ease-in-out;
+        }
+
+    </style>
+    <script>
+        function processNumber() {
+            const input = document.getElementById("numberInput").value;
+            const output = document.getElementById("output");
+
+            const number = parseFloat(input);
+            if (!checkRegex(document.getElementById("numberInput"))) {
+                output.textContent = "Error: Please enter a valid number with at least 4 decimal places.";
+                return;
+            }
+
+            const rounded = Math.round(number);
+            const squareRoot = Math.round(Math.sqrt(number));
+            const tenths = number.toFixed(1);
+            const hundredths = number.toFixed(2);
+            const thousandths = number.toFixed(3);
+
+            output.innerHTML = `
+                You typed number: ${input}<br>
+                Rounded to the nearest integer: ${rounded}<br>
+                Square root rounded to integer: ${squareRoot}<br>
+                Rounded to the nearest 10th position: ${tenths}<br>
+                Rounded to the nearest 100th position: ${hundredths}<br>
+                Rounded to the nearest 1000th position: ${thousandths}
+            `;
+        }
+
+        function clearForm() {
+            document.getElementById("numberInput").value = "";
+            document.getElementById("output").textContent = "";
+        }
+        
+        function checkRegex(numberInput) {
+            const value = numberInput.value;
+            const regex = /^\d+\.\d{4,}$/;
+            if (regex.test(value)) {
+                numberInput.style.backgroundColor="white";
+                return true;
+            } else {
+                numberInput.style.backgroundColor="#ffcce7";
+                return false;
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Homework 6 - Part 1</h1>
+        <form onsubmit="processNumber(); return false;">
+            <label>
+                Enter a number with at least 4 decimal places:
+                <input type="text" id="numberInput" oninput="checkRegex(this)">
+            </label>
+            <button type="submit">Submit</button>
+            <button type="button" onclick="clearForm()">Clear</button>
+        </form>
+        <div id="output" class="output-area"></div>
+        <a href="hw6.html">Back to Homework 6</a>
+    </div>
+</body>
+</html>
