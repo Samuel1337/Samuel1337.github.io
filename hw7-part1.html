@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 7 - Part 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3dafc;
+            color: #333;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-top: 50px;
+        }
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            background-color: #3498db;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        label {
+            margin: 10px 0;
+            display: block;
+            cursor: pointer;
+        }
+        select, input[type="radio"], input[type="checkbox"] {
+            margin: 5px;
+        }
+        .divider {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <script>
+        function applyStyles() {
+            const content = document.querySelector('.content');
+
+            const color = document.querySelector('input[name="bgColor"]:checked');
+            if (color) content.style.backgroundColor = color.value;
+
+            content.style.fontWeight = document.getElementById('bold').checked ? 'bold' : 'normal';
+            content.style.fontStyle = document.getElementById('italic').checked ? 'italic' : 'normal';
+            content.style.textDecoration = document.getElementById('underline').checked ? 'underline' : 'none';
+
+            const fontSize = document.getElementById('fontSize').value;
+            content.style.fontSize = fontSize;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Style Customization</h1>
+        
+        <form oninput="applyStyles()">
+            Background Color:
+            <div class="divider">
+                <label>
+                    <input type="radio" name="bgColor" value="#ffcccc"> Red
+                </label>
+                <label>
+                    <input type="radio" name="bgColor" value="#ccffcc"> Green
+                </label>
+            </div>
+            Text Style:
+            <div class="divider">
+                <label>
+                    <input type="checkbox" id="bold" value="bold"> Bold
+                </label>
+                <label>
+                    <input type="checkbox" id="italic" value="italic"> Italic
+                </label>
+                <label>
+                    <input type="checkbox" id="underline" value="underline"> Underline
+                </label>
+            </div>
+                <label>
+                Font Size:
+                <select id="fontSize">
+                    <option value="1em">Small</option>
+                    <option value="1.5em">Medium</option>
+                    <option value="2em">Large</option>
+                </select>
+            </label>
+        </form>
+        <div class="content">
+            <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Mattis curabitur penatibus nostra praesent cubilia cras consequat. Neque magnis class mauris tincidunt vivamus mi. Mauris ligula ultricies morbi metus senectus malesuada dis. Dolor tellus posuere interdum aptent nisl. Ridiculus platea arcu potenti; mi semper est. Orci sodales imperdiet etiam ultricies himenaeos praesent tristique interdum. Nam himenaeos nisi facilisi hac lacinia ornare pretium. Curae scelerisque conubia nisl phasellus, suscipit fermentum varius. Fringilla aptent nibh montes dictum hendrerit congue.</p>
+            <p>The very scent of love, connecting to the essence of learning. With careful guidance, we present our foundation to grow stronger. Like the great measures of harmony, advancing gracefully through life. Harmonious steps flow into a dance of wisdom and meaning. The pain of challenges is a gateway to understanding, while the foundation grows with every choice. Ridiculous though the climb may appear, strength emerges within. One structure follows another, creating a rhythm and pattern that shapes. Names and connections form the tapestry of community, with grace in every detail. Careful considerations, woven into the fabric of action, nurture diverse growth. Together, the peaks and valleys of life create an echo of meaning and movement.</p>
+            <p>O próprio aroma do amor, conectando-se à essência do aprendizado. Com orientação cuidadosa, apresentamos nossa fundação para crescer mais fortes. Como as grandes medidas de harmonia, avançando graciosamente pela vida. Passos harmoniosos fluem em uma dança de sabedoria e significado. A dor dos desafios é um portal para a compreensão, enquanto a base cresce com cada escolha. Por mais ridícula que a subida possa parecer, a força emerge no interior. Uma estrutura segue outra, criando um ritmo e um padrão que moldam. Nomes e conexões formam o tecido da comunidade, com graça em cada detalhe. Considerações cuidadosas, tecidas no tecido da ação, nutrem um crescimento diversificado. Juntas, as montanhas e vales da vida criam um eco de significado e movimento.</p>
+        </div>
+        <a href="hw7.html">Back to Homework 7</a>
+    </div>
+</body>
+</html>
