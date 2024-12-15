@@ -140,7 +140,7 @@ function myFunction(xml) {
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   function loadQuote() {
-    document.getElementById("quote").innerHTML = "loading";
+    document.getElementById("quote").innerHTML = "loading...";
   axios.get("https://southparkquotes.onrender.com/v1/quotes")
     .then(response => {
       document.getElementById("quote").innerHTML = response.data[0].quote;
