@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<style>
+  body {
+            font-family: Arial, sans-serif;
+            background-color: #b3dafc;
+            color: #333;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-top: 50px;
+        }
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            background-color: #3498db;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        table,th,td {
+          border : 1px solid black;
+          border-collapse: collapse;
+        }
+        th,td {
+          padding: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #3498db;
+          }
+          .link {
+            background-color: rgba(0, 0, 0, 0);
+            padding: 0;
+            margin: 0;
+            color: #2980b9;
+            text-decoration: underline;
+          }
+          .link:hover {
+            background-color: #9cccf7;
+          }
+</style>
+<body>
+<h1>Homework 8 - AJAX Application</h1>
+<button type="button" onclick="loadDoc()">Get CD collection</button>
+<br><br>
+<table id="demo"></table>
+<script>
+  function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    myFunction(this);
+  }
+  xhttp.open("GET", "cd_catalog.xml");
+  xhttp.send();
+}
+function myFunction(xml) {
+  const xmlDoc = xml.responseXML;
+  const x = xmlDoc.getElementsByTagName("CD");
+  let table="<tr><th>Artist</th><th>Title</th></tr>";
+  for (let i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+      x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+      "</td></tr>";
+    }
+    document.getElementById("demo").innerHTML = table;
+  }
+</script>
+<h2>
+  Explanation of AJAX
+</h2>
+<p>
+  The table above is the result of an API call using a technology called AJAX.
+</p>
+<p>
+  AJAX stands for Asynchronous JavaScript and XML.
+</p>
+<p>
+  First we create a XMLHttpRequest which will send an HTTP request to an XML file.
+</p>
+<p>
+  Once the file responds, we tailor this response to be displayed in the form of a table.
+</p>
+<p>
+  In the above case, the HTTP request is simply "GET cd_catalog.xml" which fetches the entire file.
+</p>
+<p>
+  So we just abstract from the response the ARTIST and TITLE of each CD we want to display, and the table is done.
+</p>
+
+<h2>REST API</h2>
+<p>
+  The next API call will be made to a public API that delivers South Park jokes.
+</p>
+<p>
+  Just as above, a GET request will be made, this time to an https:// address on the internet.
+</p>
+<p>
+  The API will return a JSON object that has a quote and a character from South Park.
+</p>
+<p>
+  This quote and character name will be displayed below.
+</p>
+<p>
+  No API key is necessary, no fee is attached to its use.
+</p>
+<p>
+  See the <a class="link" href="https://github.com/Thatskat/southpark-quotes-api?ref=freepublicapis.com" target='_blank'>documentation</a>.
+</p>
+<button type="button" onclick="loadQuote()">Get Quote</button>
+<br><br>
+<p id="quote"></p>
+<p id="char"></p>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  function loadQuote() {
+  axios.get("https://southparkquotes.onrender.com/v1/quotes")
+    .then(response => {
+      document.getElementById("quote").innerHTML = response.data[0].quote;
+      document.getElementById("char").innerHTML = "— " + response.data[0].character;
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    })  
+  }
+</script>
+<a href="hw1.html">Return to Homework 1 Main Page</a>
+</body>
+</html>
